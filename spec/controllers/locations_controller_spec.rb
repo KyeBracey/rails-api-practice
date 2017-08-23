@@ -40,5 +40,9 @@ RSpec.describe LocationsController, type: :controller do
       post :create, params: { name: 'test', sizetype: 'city', hold: 'testhold' }
       expect(response).to have_http_status(200)
     end
+
+    it 'creates a new location entry' do
+      expect { post :create, params: { name: 'test', sizetype: 'city', hold: 'testhold' } }.to change{ Location.count }.by(1)
+    end
   end
 end

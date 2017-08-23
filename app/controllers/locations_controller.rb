@@ -13,6 +13,11 @@ class LocationsController < ApplicationController
   end
 
   def create
-    render json: {}, status: :ok
+    location = Location.create(location_params)
+    render json: { data: location }, status: :ok
+  end
+
+  def location_params
+    params.permit(:name, :sizetype, :hold)
   end
 end
