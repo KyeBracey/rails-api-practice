@@ -16,4 +16,11 @@ RSpec.describe LocationsController, type: :controller do
       expect(JSON.parse(response.body)['data']).to eq([JSON.parse(location1.to_json), JSON.parse(location2.to_json)])
     end
   end
+
+  describe 'GET /:id' do
+    it 'responds with 200' do
+      get :show, params: { id: location1 }
+      expect(response).to have_http_status(200)
+    end
+  end
 end
