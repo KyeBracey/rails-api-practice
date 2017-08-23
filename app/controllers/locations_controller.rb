@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    render json: {}, status: :ok
+    location = Location.find(params[:id])
+    render json: { data: location }, status: :ok
   end
 end
