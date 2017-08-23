@@ -44,5 +44,12 @@ RSpec.describe LocationsController, type: :controller do
     it 'creates a new location entry' do
       expect { post :create, params: { name: 'test', sizetype: 'city', hold: 'testhold' } }.to change{ Location.count }.by(1)
     end
+
+    it 'returns an error message if the location could not be created' do
+      post :create, params: { sizetype: 'city', hold: 'testhold' }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq('Could not create new location entry')
+      expect(JSON.parse(response.body)['errors']).to eq(["name can't be blank"])
+    end
   end
 end

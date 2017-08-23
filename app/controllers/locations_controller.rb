@@ -14,7 +14,12 @@ class LocationsController < ApplicationController
 
   def create
     location = Location.create(location_params)
-    render json: { data: location }, status: :ok
+    if location.valid?
+      render json: { data: location }, status: :ok
+    else
+      errors = location.errors.messages.map{ |column, errors| "#{column} #{errors.join}" }
+      render json: { message: 'Could not create new location entry', errors: errors }, status: :bad_request
+    end
   end
 
   def location_params
