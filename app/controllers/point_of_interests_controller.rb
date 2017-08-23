@@ -10,4 +10,8 @@ class PointOfInterestsController < ApplicationController
     point_of_interest = location.point_of_interests.find_by_id(params[:id])
     render json: { data: point_of_interest }, status: :ok
   end
+
+  def create
+    render json: {}, status: :ok
+  end
 end

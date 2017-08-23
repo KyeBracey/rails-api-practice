@@ -28,4 +28,11 @@ RSpec.describe PointOfInterestsController, type: :controller do
       expect(JSON.parse(response.body)['data']).to eq(JSON.parse(point_of_interest1.to_json))
     end
   end
+
+  describe 'POST /' do
+    it 'responds with 200' do
+      post :create, params: { location_id: 1, name: 'Temple of Dibella', buildingtype: 'religious', description: 'A temple filled with sleepless Priestesses' }
+      expect(response).to have_http_status(200) 
+    end
+  end
 end
