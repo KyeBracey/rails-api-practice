@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    render json: {}, status: :ok
+    locations = Location.all
+    render json: { data: locations }, status: :ok
   end
 end
