@@ -34,4 +34,11 @@ RSpec.describe LocationsController, type: :controller do
       expect(JSON.parse(response.body)['message']).to eq('Location with id 9999 does not exist')
     end
   end
+
+  describe 'POST /' do
+    it 'responds with 200' do
+      post :create, params: { name: 'test', sizetype: 'city', hold: 'testhold' }
+      expect(response).to have_http_status(200)
+    end
+  end
 end

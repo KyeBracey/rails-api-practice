@@ -11,4 +11,8 @@ class LocationsController < ApplicationController
       render json: { message: "Location with id #{params[:id]} does not exist" }, status: :bad_request
     end
   end
+
+  def create
+    render json: {}, status: :ok
+  end
 end
