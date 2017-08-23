@@ -32,7 +32,18 @@ RSpec.describe PointOfInterestsController, type: :controller do
   describe 'POST /' do
     it 'responds with 200' do
       post :create, params: { location_id: 1, name: 'Temple of Dibella', buildingtype: 'religious', description: 'A temple filled with sleepless Priestesses' }
-      expect(response).to have_http_status(200) 
+      expect(response).to have_http_status(200)
+    end
+
+    it 'creates a new POI' do
+      expect {
+                post :create, params: {
+                                        location_id: 1,
+                                        name: 'Temple of Dibella',
+                                        buildingtype: 'religious',
+                                        description: 'A temple filled with sleepless Priestesses'
+                                      }
+              }.to change{ location1.point_of_interests.count }.by(1)
     end
   end
 end
