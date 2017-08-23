@@ -27,5 +27,11 @@ RSpec.describe LocationsController, type: :controller do
       get :show, params: { id: 2 }
       expect(JSON.parse(response.body)['data']).to eq(JSON.parse(location2.to_json))
     end
+
+    it 'returns an error message if the location does not exist' do
+      get :show, params: { id: 9999 }
+      expect(response).to have_http_status(400)
+      expect(JSON.parse(response.body)['message']).to eq('Location with id 9999 does not exist')
+    end
   end
 end
