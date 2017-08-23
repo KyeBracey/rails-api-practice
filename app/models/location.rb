@@ -1,3 +1,3 @@
 class Location < ApplicationRecord
-  validates :name, :sizetype, :hold, presence: true
+  validates_presence_of :name, :sizetype, :hold
 end
